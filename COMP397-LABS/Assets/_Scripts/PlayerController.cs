@@ -58,8 +58,8 @@ public class PlayerController : MonoBehaviour
         _controller.Move(_velocity * Time.fixedDeltaTime);
     }
 
-    //Gizmos turn red when player is grounded
-    void onDrawGizmos()
+    
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(_groundCheck.position, _groundRadius);
