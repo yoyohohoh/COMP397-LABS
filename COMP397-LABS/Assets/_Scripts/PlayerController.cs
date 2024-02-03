@@ -26,7 +26,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _groundRadius = 0.5f;
     [SerializeField] LayerMask _groundMask;
     [SerializeField] bool _isGrounded;
-  
+
+    [Header("Respawn Locations")]
+    [SerializeField] Transform _respawn;
+
     void Awake()
     {
         _controller = GetComponent<CharacterController>();
@@ -43,6 +46,14 @@ public class PlayerController : MonoBehaviour
 
         //Jump when pressing key
         _inputs.Player.Jump.performed += context => Jump();
+    }
+
+    private void OnEnable() => _inputs.Enable();
+    
+    
+    private void OnDisable()
+    {
+        _inputs.Disable();
     }
 
     void FixedUpdate()
@@ -72,7 +83,19 @@ public class PlayerController : MonoBehaviour
             _velocity.y = Mathf.Sqrt(_jumpHeight * -2.0f * _gravity);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log($"Triggering with {other.gameObject.tag}");
+        if(other.gameObject.CompareTag("death"))
+        {
+            _controller.enabled = false;
+            transform.position = _respawn.position;
+            _controller.enabled = true;
+        }
     
+    }
+
     private void SendMessage(InputAction.CallbackContext context)
     {
         Debug.Log($"Move Performed x = {context.ReadValue<Vector2>(). x}, y = {context.ReadValue<Vector2>(). y}");
