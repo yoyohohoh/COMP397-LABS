@@ -20,6 +20,7 @@ public class CameraController : MonoBehaviour
 
     void InitCameraPriorities()
     {
+        //loop through all the virtual cameras and set their priority to 0
         foreach (var vCamera in _virtualCameras)
         {
             vCamera.Priority = 0;
@@ -33,6 +34,7 @@ public class CameraController : MonoBehaviour
 
     void MoveCamera(float value)
     {
+        //direction of the camera change
         Debug.Log($"Camera change value {value}");
         _index += (int)value;
         if (_index < 0) _index = _virtualCameras.Count - 1;
@@ -43,6 +45,7 @@ public class CameraController : MonoBehaviour
 
     void ChangeCamera()
     {
+        //change the priority of the current camera to 0 or 10
         _currentCamera.Priority = 0;
         _currentCamera = _virtualCameras[_index];
         _currentCamera.Priority = 10;

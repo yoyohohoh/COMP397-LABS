@@ -48,9 +48,10 @@ public class PlayerController : MonoBehaviour
         _inputs.Player.Jump.performed += context => Jump();
     }
 
+    //same thing as beloe but short form
     private void OnEnable() => _inputs.Enable();
     
-    
+    //same thing as above but long form
     private void OnDisable()
     {
         _inputs.Disable();
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        //basic movement and gravity setting
         _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundRadius, _groundMask);
         if(_isGrounded && _velocity.y < 0.0f)
         {
@@ -86,6 +88,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //death zone
         Debug.Log($"Triggering with {other.gameObject.tag}");
         if(other.gameObject.CompareTag("death"))
         {
