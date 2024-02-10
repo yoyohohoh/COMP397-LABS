@@ -7,7 +7,7 @@ using UnityEngine.Scripting.APIUpdating;
 //To make sure the object contains the required components
 [RequireComponent(typeof(CharacterController))]
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Subject //Inheriting from Subject --- Observer Pattern
 {
     COMP397LABS _inputs;
     Vector2 _move;
@@ -89,12 +89,13 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //death zone
-        Debug.Log($"Triggering with {other.gameObject.tag}");
+        //Debug.Log($"Triggering with {other.gameObject.tag}");
         if(other.gameObject.CompareTag("death"))
         {
             _controller.enabled = false;
             transform.position = _respawn.position;
             _controller.enabled = true;
+            NotifyObservers();//from script Subject --- Observer Pattern
         }
     
     }
