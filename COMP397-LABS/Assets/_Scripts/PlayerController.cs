@@ -66,6 +66,7 @@ public class PlayerController : Subject //Inheriting from Subject --- Observer P
             _velocity.y = -2.0f;
         }
         Vector3 movement = new Vector3(_move.x, 0.0f, _move.y) * _speed * Time.fixedDeltaTime;
+        if (!_controller.enabled) { return; }
         _controller.Move(movement);
         _velocity.y += _gravity * Time.fixedDeltaTime;
         _controller.Move(_velocity * Time.fixedDeltaTime);
