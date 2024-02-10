@@ -22,9 +22,21 @@ public class PlayerStatsController : MonoBehaviour, IObserver
     {
         _playerSubject.RemoveObserver(this);
     }
-    public void OnNotify()
+    public void OnNotify(PlayerEnums playerEnums)
     {
-        Debug.Log($"Player died");
+        switch(playerEnums)
+        {
+            case PlayerEnums.Died:
+                PlayerDied();
+                break;
+            default:
+                break;
+        }
+        
+    }
+
+    private void PlayerDied()
+    {
         _playerHealth -= 1;
         if (_playerHealth <= 0)
         {
@@ -32,4 +44,5 @@ public class PlayerStatsController : MonoBehaviour, IObserver
             SceneManager.LoadScene("GameOver");
         }
     }
+
 } 

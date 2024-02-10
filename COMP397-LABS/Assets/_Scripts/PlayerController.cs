@@ -83,6 +83,7 @@ public class PlayerController : Subject //Inheriting from Subject --- Observer P
         if(_isGrounded)
         {
             _velocity.y = Mathf.Sqrt(_jumpHeight * -2.0f * _gravity);
+            NotifyObservers(PlayerEnums.Jump);
         }
     }
 
@@ -95,7 +96,7 @@ public class PlayerController : Subject //Inheriting from Subject --- Observer P
             _controller.enabled = false;
             transform.position = _respawn.position;
             _controller.enabled = true;
-            NotifyObservers();//from script Subject --- Observer Pattern
+            NotifyObservers(PlayerEnums.Died);//from script Subject --- Observer Pattern
         }
     
     }

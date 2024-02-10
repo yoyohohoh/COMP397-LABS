@@ -17,12 +17,12 @@ public abstract class Subject : MonoBehaviour
     }
 
     // This method will be called when the subject's state changes
-    public void NotifyObservers()
+    public void NotifyObservers(PlayerEnums playerEnums)
     {
         //another way of a method call for each list item
         _observers.ForEach((_observer) =>
         {
-            _observer.OnNotify();
+            _observer.OnNotify(playerEnums);
         });
     }
 }
