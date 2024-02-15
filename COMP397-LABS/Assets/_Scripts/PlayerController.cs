@@ -9,9 +9,15 @@ using UnityEngine.Scripting.APIUpdating;
 
 public class PlayerController : Subject //Inheriting from Subject --- Observer Pattern
 {
+#region Private Fields
     COMP397LABS _inputs;
     Vector2 _move;
+    Camera _camera;
+    Vector3 _camForward, _camRight;
+#endregion
 
+//create a collapsable section
+#region Serialize Fields
     [Header("Character Controller")]
     [SerializeField] CharacterController _controller;
 
@@ -29,9 +35,11 @@ public class PlayerController : Subject //Inheriting from Subject --- Observer P
 
     [Header("Respawn Locations")]
     [SerializeField] Transform _respawn;
+#endregion
 
     void Awake()
     {
+        _camera = Camera.main;
         _controller = GetComponent<CharacterController>();
         _inputs = new COMP397LABS();
         _inputs.Enable();
@@ -65,7 +73,26 @@ public class PlayerController : Subject //Inheriting from Subject --- Observer P
         {
             _velocity.y = -2.0f;
         }
-        Vector3 movement = new Vector3(_move.x, 0.0f, _move.y) * _speed * Time.fixedDeltaTime;
+
+        _camForward = _camera.transform.forward;
+        _camRight = _camera.transform.right;
+        _camForward.y = 0.0f;
+        _camRight.y = 0.0f;
+        _camForward.Normalize();
+        _camRight.Normalize();
+
+        // OLD movement (Lab 1- 5)
+        // Vector3 movement = new Vector3(_move.x, 0.0f, _move.y) * _speed * Time.fixedDeltaTime;
+
+        // Situation: When my camera is capturing the face of player and press "W"
+        // OLD: player will move forward where his face is facing
+        // NEW: player will move forward where the camera is facing, i.e. the same direction of what I see from the screen
+        // however, the player does not rotate, so it looks like walking backward when pressing "W"
+        // temp Solution: remove the eyes lol
+
+        // NEW movement (Lab 6)
+        Vector3 movement = (_camRight * _move.x + _camForward * _move.y) * _speed * Time.fixedDeltaTime;
+
         if (!_controller.enabled) { return; }
         _controller.Move(movement);
         _velocity.y += _gravity * Time.fixedDeltaTime;
