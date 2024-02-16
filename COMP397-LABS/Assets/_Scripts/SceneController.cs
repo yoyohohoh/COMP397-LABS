@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController : MonoBehaviour
+public class SceneController : PersistentSingleton<SceneController>
 {
     public void ChangeScene() => SceneManager.LoadScene("SampleScene"); 
 

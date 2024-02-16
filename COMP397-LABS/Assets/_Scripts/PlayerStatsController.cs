@@ -41,8 +41,17 @@ public class PlayerStatsController : MonoBehaviour, IObserver
         if (_playerHealth <= 0)
         {
             Debug.Log($"Player truly died");
-            SceneManager.LoadScene("GameOver");
+            //Lab 1-5
+            //SceneManager.LoadScene("GameOver");
+
+            //Lab 6
+            SceneController.Instance.ChangeSceneByName("GameOver");
         }
+    }
+
+    public void SaveGameIntoFile()
+    {
+        SaveGameManager.Instance().SaveGame(_playerSubject.transform);
     }
 
 } 
