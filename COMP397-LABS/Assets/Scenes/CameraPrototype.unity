@@ -281,7 +281,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124707362}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31622776, y: -7.5929457e-10, z: 2.5309907e-10, w: 0.9486833}
+  m_LocalRotation: {x: 0.31622776, y: -7.605316e-10, z: 2.535108e-10, w: 0.9486833}
   m_LocalPosition: {x: -1.848, y: 7, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -833,7 +833,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 551239743}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31622776, y: -7.5929457e-10, z: 2.5309907e-10, w: 0.9486833}
+  m_LocalRotation: {x: 0.31622776, y: -7.605316e-10, z: 2.535108e-10, w: 0.9486833}
   m_LocalPosition: {x: -1.848, y: 7, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1184,11 +1184,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSubject: {fileID: 0}
   audios:
-  - audioName: Jump
-    audioClip: {fileID: 8300000, guid: 7e0ce9d8ed9b4cb4183caf199cd1a2d3, type: 3}
-  - audioName: Died
-    audioClip: {fileID: 8300000, guid: 7a148c6a97893d34b9769196ff4e530e, type: 3}
-  _sfxPlayer: {fileID: 2065730677}
+  - {fileID: 0}
+  - {fileID: 0}
+  _musicName: 
 --- !u!4 &913956866
 Transform:
   m_ObjectHideFlags: 0
@@ -1700,7 +1698,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227184981}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2236068, y: 0.6708204, z: -0.22360684, w: 0.67082036}
+  m_LocalRotation: {x: 0.2236068, y: 0.6708205, z: -0.22360682, w: 0.6708204}
   m_LocalPosition: {x: -9.848, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
