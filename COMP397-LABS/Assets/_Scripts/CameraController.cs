@@ -2,10 +2,14 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
     COMP397LABS _inputs;
+    [SerializeField] private Button _turnCameraLeft;
+    [SerializeField] private Button _turnCameraRight;
     [SerializeField] private int _index = 0;
     [SerializeField] private CinemachineVirtualCamera _currentCamera;
     [SerializeField] private List<CinemachineVirtualCamera> _virtualCameras = new List<CinemachineVirtualCamera>();
@@ -16,7 +20,11 @@ public class CameraController : MonoBehaviour
         _inputs = new COMP397LABS(); // Section 001
         // _inputs = new PlayerControl(); // Section 401
         _inputs.Player.Camera.performed += context => MoveCamera(context.ReadValue<float>());
+        _turnCameraLeft.onClick.AddListener(() => MoveCamera(-1));
+        _turnCameraRight.onClick.AddListener(() => MoveCamera(1));
     }
+
+
 
     void InitCameraPriorities()
     {
